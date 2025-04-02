@@ -10,6 +10,7 @@ class Board
     end
   end
 
+  # Places the current player piece on the board
   def place_piece(x, y, piece)
     puts "Placing #{piece} at position #{x},#{y}"
     if @grid[x][y] == '-'
@@ -18,5 +19,12 @@ class Board
     else
       return false
     end
+  end
+
+  # Checks if spot is free or within bounds
+  def validate_move(x,y)
+    return false unless x.between?(0, 2) && y.between?(0, 2)
+
+    @grid[x][y] == '-'
   end
 end
