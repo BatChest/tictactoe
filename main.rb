@@ -26,6 +26,16 @@ def playGame(player1, player2, board)
   board.place_piece(x, y, player1.piece)
 
   board.displayBoard
+
+  x, y = player1.get_move
+  board.place_piece(x, y, player1.piece)
+  board.displayBoard
+
+  x, y = player1.get_move
+  board.place_piece(x, y, player1.piece)
+  board.displayBoard
+
+  board.check_otherdiagonal
 end
 
 # Run the game
