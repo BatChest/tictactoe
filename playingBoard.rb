@@ -31,7 +31,11 @@ class Board
   def check_row
     @grid.each do |row|
       if row.all? {|str| str == 'X'} && row[0] != '-'
-        puts "Player with #{row[0]} wins!"
+        # puts "Player 1 wins!"
+        return 'X'
+      elsif row.all? {|str| str == 'O'} && row[0] != '-'
+        # puts "Player 2 wins?"
+        return 'O'
       end
     end
   end
@@ -41,7 +45,11 @@ class Board
       column = @grid.map { |row| row[col_index] }
 
       if column.all? {|str| str == 'X'} && column[0] != '-'
-        puts "Player with #{column[0]} wins!"
+        # puts "Player 1 wins!"
+        return 'X'
+      elsif column.all? {|str| str == 'O'} && column[0] != '-'
+        # puts "Player 2 wins?"
+        return 'O'
       end
     end
   end
@@ -55,9 +63,11 @@ class Board
       diagonal_values << @grid[row][col]
     end
     if diagonal_values.all? {|s| s == 'X'}
-      puts "Player 1 wins!"
+      # puts "Player 1 wins!"
+      return 'X'
     elsif diagonal_values.all? {|s| s == 'O'}
-      puts "Player 2 wins!"
+      # puts "Player 2 wins!"
+      return 'O'
     end
   end
 
@@ -70,9 +80,11 @@ class Board
       other_values << @grid[row][col]
     end
     if other_values.all? {|s| s == 'X'}
-      puts "Player 1 wins!"
+      # puts "Player 1 wins!"
+      return 'X'
     elsif other_values.all? {|s| s == 'O'}
-      puts "Player 2 wins!"
+      # puts "Player 2 wins!"
+      return 'O'
     end
   end
 
