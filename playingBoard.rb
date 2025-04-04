@@ -28,6 +28,7 @@ class Board
     @grid[x][y] == '-'
   end
 
+  # Check each row in the grid if all are the same character
   def check_row
     @grid.each do |row|
       if row.all? {|str| str == 'X'} && row[0] != '-'
@@ -38,8 +39,10 @@ class Board
         return 'O'
       end
     end
+    return ''
   end
 
+  # check each column if all three character are the same
   def check_vertical
     (0...@grid[0].size).each do |col_index|
       column = @grid.map { |row| row[col_index] }
@@ -52,8 +55,11 @@ class Board
         return 'O'
       end
     end
+    return ''
   end
 
+  # Check the diagonal indexes by creating array of the current values at those specific indexes
+  # checks the new array if the three values all match to either 'X' or 'O'
   def check_digaonal
     main_diagonal = [[0,0], [1,1], [2,2]]
     diagonal_values = []
@@ -69,8 +75,10 @@ class Board
       # puts "Player 2 wins!"
       return 'O'
     end
+    return ''
   end
 
+  # Does the same as the above but just the other direction
   def check_otherdiagonal
     other_diagonal = [[0,2], [1,1], [2,0]]
     other_values = []
@@ -86,6 +94,13 @@ class Board
       # puts "Player 2 wins!"
       return 'O'
     end
+    return ''
   end
 
+  # The a spot is empty if it has a '-' char
+  # So if ther are no '-' chars then the board is full
+  def check_if_boardfull
+    # flatten the grid into single array of cells
+    @grid.flatten.include?('-') ? false : 'tie'
+  end
 end
