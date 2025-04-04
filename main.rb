@@ -1,7 +1,6 @@
 require_relative 'player'
 require_relative 'playingBoard'
 require_relative 'gameClass'
-require 'debug'
 
 def setUpGame()
   # Create the playing board first

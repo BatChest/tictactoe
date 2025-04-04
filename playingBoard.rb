@@ -29,13 +29,12 @@ class Board
   end
 
   # Check each row in the grid if all are the same character
+  #  # If no row is the same we siginfy this by returning blank
   def check_row
     @grid.each do |row|
       if row.all? {|str| str == 'X'} && row[0] != '-'
-        # puts "Player 1 wins!"
         return 'X'
       elsif row.all? {|str| str == 'O'} && row[0] != '-'
-        # puts "Player 2 wins?"
         return 'O'
       end
     end
@@ -43,15 +42,14 @@ class Board
   end
 
   # check each column if all three character are the same
+  # If no col is the same we siginfy this by returning blank
   def check_vertical
     (0...@grid[0].size).each do |col_index|
       column = @grid.map { |row| row[col_index] }
 
       if column.all? {|str| str == 'X'} && column[0] != '-'
-        # puts "Player 1 wins!"
         return 'X'
       elsif column.all? {|str| str == 'O'} && column[0] != '-'
-        # puts "Player 2 wins?"
         return 'O'
       end
     end
@@ -60,6 +58,7 @@ class Board
 
   # Check the diagonal indexes by creating array of the current values at those specific indexes
   # checks the new array if the three values all match to either 'X' or 'O'
+  # If diagaonal is not the same we siginfy this by returning blank
   def check_digaonal
     main_diagonal = [[0,0], [1,1], [2,2]]
     diagonal_values = []
@@ -69,16 +68,15 @@ class Board
       diagonal_values << @grid[row][col]
     end
     if diagonal_values.all? {|s| s == 'X'}
-      # puts "Player 1 wins!"
       return 'X'
     elsif diagonal_values.all? {|s| s == 'O'}
-      # puts "Player 2 wins!"
       return 'O'
     end
     return ''
   end
 
   # Does the same as the above but just the other direction
+  # If diagaonal is not the same we siginfy this by returning blank
   def check_otherdiagonal
     other_diagonal = [[0,2], [1,1], [2,0]]
     other_values = []
@@ -88,16 +86,14 @@ class Board
       other_values << @grid[row][col]
     end
     if other_values.all? {|s| s == 'X'}
-      # puts "Player 1 wins!"
       return 'X'
     elsif other_values.all? {|s| s == 'O'}
-      # puts "Player 2 wins!"
       return 'O'
     end
     return ''
   end
 
-  # The a spot is empty if it has a '-' char
+  # A spot is empty if it has a '-' char
   # So if ther are no '-' chars then the board is full
   def check_if_boardfull
     # flatten the grid into single array of cells

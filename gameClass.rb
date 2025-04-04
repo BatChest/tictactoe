@@ -8,8 +8,8 @@ class Game
 
   # main loop for playing the game
   # gets input, updates board, display, check for winner, repeats until winner or tie
+  # When game firsts start player 1 is always first
   def play
-    # When game firsts start player 1 is always first
     game_state = ''
     @current_player = @player1
     until game_state == 'X' || game_state == 'O' || game_state == 'tie'
